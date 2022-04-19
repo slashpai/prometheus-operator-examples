@@ -1,0 +1,15 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: sample-app
+  namespace: example-monitoring
+  labels:
+    app: sample-app
+spec:
+  selector:
+    app: sample-app
+  ports:
+    - name: web
+      port: 8080
+    - name: mtls
+      port: 8081

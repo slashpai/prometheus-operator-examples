@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: sample-app
+  namespace: example-monitoring
+spec:
+  selector:
+    matchLabels:
+      app: sample-app
+  endpoints:
+    - port: mtls
+      interval: 30s
+      scheme: https
+      tlsConfig:
+        insecureSkipVerify: true
+        keySecret:
+          name: tls-certs
+          key: key.pem
+        cert:
+          secret:
+            name: tls-certs
+            key: cert.pem

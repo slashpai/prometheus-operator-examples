@@ -1,0 +1,36 @@
+# this file is based on https://github.com/prometheus-operator/prometheus-operator/tree/main/test/framework/resources
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: instrumented-sample-app
+  namespace: example-monitoring
+  labels:
+    app: sample-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: sample-app
+  template:
+    metadata:
+      labels:
+        app: sample-app
+    spec:
+      containers:
+        - name: example-app
+          image: quay.io/coreos/instrumented-sample-app:0.2.0-bearer-mtls-1
+          imagePullPolicy: IfNotPresent
+          args:
+            - --cert-path=/etc/certs
+          ports:
+            - name: web
+              containerPort: 8080
+            - name: mtls
+              containerPort: 8081
+          volumeMounts:
+            - name: tls-certs
+              mountPath: /etc/certs
+      volumes:
+        - name: tls-certs
+          secret:
+            secretName: tls-certs
