@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: example-app
+  namespace: default
+  labels:
+    app.kubernetes.io/name: example-app
+spec:
+  selector:
+    app.kubernetes.io/name: example-app
+  ports:
+  - name: web
+    port: 8080

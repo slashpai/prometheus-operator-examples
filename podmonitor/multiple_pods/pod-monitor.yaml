@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: multiple-pods-monitoring
+  namespace: default
+  labels:
+    app.kubernetes.io/name: multiple-pods-monitoring
+spec:
+  selector:
+    matchLabels:
+      team: frontend
+  podMetricsEndpoints:
+  - port: web
+  - port: metric

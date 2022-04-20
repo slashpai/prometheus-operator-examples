@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: single-instance-app
+  namespace: default
+  labels:
+    app.kubernetes.io/name: single-instance-app
+spec:
+  containers:
+  - image: ghcr.io/rhobs/prometheus-example-app:0.4.1
+    name: prometheus-example-app
+    ports:
+    - name: web 
+      containerPort: 8080

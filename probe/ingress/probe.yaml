@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: probe-ingress
+  namespace: default
+  labels:
+    app.kubernetes.io/name: probe-ingress
+spec:
+  prober:
+    url: blackbox-exporter.monitoring.svc:19115
+  targets:
+    ingress:
+      selector:
+        matchLabels:
+          app.kubernetes.io/name: example-app

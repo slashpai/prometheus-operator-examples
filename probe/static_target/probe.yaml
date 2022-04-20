@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: probe-static-target
+  namespace: default
+  labels:
+    app.kubernetes.io/name: probe-static-target
+spec:
+  prober:
+    url: blackbox-exporter.monitoring.svc:19115
+  targets:
+    staticConfig:
+      labels:
+          environment: prometheus.io
+      static:
+          - 'https://demo.do.prometheus.io'
+          - 'https://node.demo.do.prometheus.io'

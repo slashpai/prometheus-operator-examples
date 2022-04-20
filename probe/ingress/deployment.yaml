@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: example-app
+  namespace: default
+  labels:
+    app.kubernetes.io/name: example-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: example-app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: example-app
+    spec:
+      containers:
+      - name: prometheus-example-app
+        image: ghcr.io/rhobs/prometheus-example-app:0.4.1
+        ports:
+        - name: web
+          containerPort: 8080

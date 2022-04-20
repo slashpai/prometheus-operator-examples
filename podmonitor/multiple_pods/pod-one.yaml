@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-one
+  namespace: default
+  labels:
+    app.kubernetes.io/name: pod-one
+    team: frontend
+spec:
+  containers:
+  - image: ghcr.io/rhobs/prometheus-example-app:0.4.1
+    name: prometheus-example-app
+    ports:
+    - name: web 
+      containerPort: 8080

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-two
+  namespace: default
+  labels:
+    app.kubernetes.io/name: pod-two
+    team: frontend
+spec:
+  containers:
+  - image: ghcr.io/rhobs/prometheus-example-app:0.4.1
+    name: prometheus-example-app
+    ports:
+    - name: metric 
+      containerPort: 8080

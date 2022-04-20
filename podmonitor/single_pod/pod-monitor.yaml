@@ -1,0 +1,13 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PodMonitor
+metadata:
+  name: single-instance-app
+  namespace: default
+  labels:
+    app.kubernetes.io/name: single-instance-app
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: single-instance-app
+  podMetricsEndpoints:
+  - port: web
