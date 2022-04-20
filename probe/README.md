@@ -41,3 +41,7 @@
 - Refresh prometheus target page it should show probe ingress target
 
   ![img](img/probe_ingress.png)
+
+- Run sample query in prometheus
+
+  ![img](img/sample_query.png)

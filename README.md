@@ -13,3 +13,11 @@ $ minikube delete && minikube start --kubernetes-version=v1.23.0 --memory=6g --b
 [kube-prometheus](https://github.com/prometheus-operator/kube-prometheus#quickstart) stack is configured in cluster before running any examples
 
 **Note:** The configs in this repo should be treated as examples only. This is not tested in production cluster. These examples can serve as a starting point for creating production ready configs
+
+## Helpful Commands
+
+- Access Prometheus UI
+
+```bash
+kubectl -n monitoring port-forward svc/prometheus-k8s 9090
+```
