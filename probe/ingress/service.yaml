@@ -8,6 +8,7 @@ metadata:
 spec:
   selector:
     app.kubernetes.io/name: example-app
+  type: NodePort
   ports:
   - name: web
     port: 8080
