@@ -4,6 +4,8 @@
 
 Have a kube-prometheus stack setup using [quick start](https://github.com/prometheus-operator/kube-prometheus#quickstart)
 
+## Steps
+
 1. Deploy thanos (You can use existing thanos setup if you have, update fields accordingly)
 
     ```bash
