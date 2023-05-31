@@ -49,13 +49,13 @@ prometheus-operator-58899ccbf4-9pv7p   2/2     Running   0          5m6s
 - Access Prometheus UI
 
   ```bash
-  kubectl -n monitoring port-forward svc/prometheus-k8s 9090
+  kubectl -n monitoring port-forward svc/prometheus-k8s 9090&
   ```
 
 - Access AlertManager UI
 
   ```bash
-  kubectl -n monitoring port-forward svc/alertmanager-main 9093
+  kubectl -n monitoring port-forward svc/alertmanager-main 9093&
   ```
 
 ## Notes
@@ -70,7 +70,7 @@ If app is deployed as a pod:
 kubectl port-forward pod/<pod-name> 8080
 ```
 
-If service exists/deployed as a Deployment
+If service exists/deployed as a Deployment and exposed it through service
 
 ```
 kubectl port-forward svc/<service-name> 8080
