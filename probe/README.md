@@ -14,7 +14,7 @@
   kubectl apply -f ./static_target
   ```
 
-- Refresh prometheus target page it should display probe ingress target
+- Refresh prometheus target page it should display probe static target
 
   ![img](img/probe_static_target.png)
 

@@ -12,4 +12,4 @@ spec:
     ingress:
       selector:
         matchLabels:
-          app.kubernetes.io/name: example-app
+          app.kubernetes.io/name: example-app-ingress

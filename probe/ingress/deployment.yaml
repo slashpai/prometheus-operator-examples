@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: example-app
+  name: example-app-ingress
   namespace: default
   labels:
-    app.kubernetes.io/name: example-app
+    app.kubernetes.io/name: example-app-ingress
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app.kubernetes.io/name: example-app
+      app.kubernetes.io/name: example-app-ingress
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: example-app
+        app.kubernetes.io/name: example-app-ingress
     spec:
       containers:
       - name: prometheus-example-app

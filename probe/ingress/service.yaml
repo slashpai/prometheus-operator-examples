@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: example-app
+  name: example-app-ingress
   namespace: default
   labels:
-    app.kubernetes.io/name: example-app
+    app.kubernetes.io/name: example-app-ingress
 spec:
   selector:
-    app.kubernetes.io/name: example-app
+    app.kubernetes.io/name: example-app-ingress
   type: NodePort
   ports:
   - name: web
