@@ -29,7 +29,7 @@ Have a kube-prometheus stack setup using [quick start](https://github.com/promet
         app.kubernetes.io/instance: k8s
         app.kubernetes.io/name: prometheus
         app.kubernetes.io/part-of: kube-prometheus
-        app.kubernetes.io/version: 2.34.0
+        app.kubernetes.io/version: 2.44.0
       name: k8s
       namespace: monitoring
     spec:
@@ -41,7 +41,7 @@ Have a kube-prometheus stack setup using [quick start](https://github.com/promet
           port: web
       enableFeatures: []
       externalLabels: {}
-      image: quay.io/prometheus/prometheus:v2.34.0
+      image: quay.io/prometheus/prometheus:v2.44.0
       nodeSelector:
         kubernetes.io/os: linux
       podMetadata:
@@ -50,7 +50,7 @@ Have a kube-prometheus stack setup using [quick start](https://github.com/promet
           app.kubernetes.io/instance: k8s
           app.kubernetes.io/name: prometheus
           app.kubernetes.io/part-of: kube-prometheus
-          app.kubernetes.io/version: 2.34.0
+          app.kubernetes.io/version: 2.44.0
       podMonitorNamespaceSelector: {}
       podMonitorSelector: {}
       probeNamespaceSelector: {}
@@ -68,7 +68,7 @@ Have a kube-prometheus stack setup using [quick start](https://github.com/promet
       serviceAccountName: prometheus-k8s
       serviceMonitorNamespaceSelector: {}
       serviceMonitorSelector: {}
-      version: 2.34.0
+      version: 2.44.0
       ```
 
   - Add entry for remoteWrite after `version` field. The url field points to thanos-receiver service which was deployed earlier. You can get the name of service by running `kubectl get svc -n monitoring`
@@ -86,11 +86,12 @@ Have a kube-prometheus stack setup using [quick start](https://github.com/promet
 
 3. Wait sometime till new config is rolled out. Once its updated you should be able to see remoteWrite settings in prometheus configuration
 
-
-4. Check if metrics available in thanos querier
+4. Check if metrics available in thanos using thanos querier
 
     ```bash
-    kubectl port-forward svc/thanos-query 9090 9090
+    kubectl -n monitoring port-forward svc/thanos-query 9091:9090&
     ```
 
-    ![img](img/thanos_querier.png)
+    ![img](img/thanos_querier_1.png)
+
+    ![img](img/thanos_querier_2.png)
