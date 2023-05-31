@@ -2,22 +2,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: instrumented-sample-app
-  namespace: example-monitoring
+  name: sample-app-tls
+  namespace: example-monitoring-tls
   labels:
-    app: sample-app
+    app: sample-app-tls
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: sample-app
+      app: sample-app-tls
   template:
     metadata:
       labels:
-        app: sample-app
+        app: sample-app-tls
     spec:
       containers:
-        - name: example-app
+        - name: sample-app-tls
           image: quay.io/coreos/instrumented-sample-app:0.2.0-bearer-mtls-1
           imagePullPolicy: IfNotPresent
           args:

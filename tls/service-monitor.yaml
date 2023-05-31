@@ -1,12 +1,12 @@
 apiVersion: monitoring.coreos.com/v1
 kind: ServiceMonitor
 metadata:
-  name: sample-app
-  namespace: example-monitoring
+  name: sample-app-tls
+  namespace: example-monitoring-tls
 spec:
   selector:
     matchLabels:
-      app: sample-app
+      app: sample-app-tls
   endpoints:
     - port: mtls
       interval: 30s

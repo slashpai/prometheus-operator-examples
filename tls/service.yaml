@@ -1,13 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: sample-app
-  namespace: example-monitoring
+  name: sample-app-tls
+  namespace: example-monitoring-tls
   labels:
-    app: sample-app
+    app: sample-app-tls
 spec:
   selector:
-    app: sample-app
+    app: sample-app-tls
   ports:
     - name: web
       port: 8080
