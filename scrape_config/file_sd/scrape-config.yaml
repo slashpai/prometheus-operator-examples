@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: scrape-config-file-sd-example
+  namespace: default
+  labels:
+    app.kubernetes.io/name: scrape-config-filesd-example
+spec:
+  fileSDConfigs:
+    - files:
+      - /etc/prometheus/configmaps/scrape-file-sd-targets/targets.yaml
+      refreshInterval: 15s
