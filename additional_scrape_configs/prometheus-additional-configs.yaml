@@ -1,0 +1,14 @@
+ # from https://github.com/prometheus/prometheus/blob/b355e833d560d7ff8ae1453ab387a7a67589c2c6/documentation/examples/prometheus-kubernetes.yml#L59-L89
+ # Scrape config for nodes (kubelet).
+- job_name: "kubernetes-nodes"
+  scheme: https
+  tls_config:
+      ca_file: /var/run/secrets/kubernetes.io/serviceaccount/ca.crt
+      insecure_skip_verify: true
+  authorization:
+      credentials_file: /var/run/secrets/kubernetes.io/serviceaccount/token
+  kubernetes_sd_configs:
+  - role: node
+  relabel_configs:
+    - action: labelmap
+      regex: __meta_kubernetes_node_label_(.+)
