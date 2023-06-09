@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: scrape-config-static-config-external
+  namespace: default
+  labels:
+    app.kubernetes.io/name: scrape-config-static-config-external-node-example
+spec:
+  staticConfigs:
+    - labels:
+        job: node-exporter-external
+      targets:
+      - node.demo.do.prometheus.io
+  

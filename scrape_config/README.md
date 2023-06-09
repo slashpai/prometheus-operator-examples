@@ -5,6 +5,7 @@ Monitor using ScrapeConfig
 ## staticConfigs
 
 - In the example, I have used in-cluster services (prometheus and alertmanager) as targets. It should work similar for external hosts.
+  Another example on external node exporter is also added now.
 
   ```bash
   kubectl apply -f ./static_config
