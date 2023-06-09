@@ -24,4 +24,5 @@ Monitor using ScrapeConfig
  - Refresh prometheus target page it should show scrape config targets
 
     ![img](img/scrape_config.png)
- 
+
+    ![img](img/scrape_config_external.png)
