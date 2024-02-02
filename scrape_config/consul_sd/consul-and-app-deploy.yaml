@@ -1,0 +1,103 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consul-example-app
+  namespace: default
+  labels:
+    app.kubernetes.io/name: consul-example-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: consul-example-app
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: consul-example-app
+    spec:
+      containers:
+      - name: consul-example-app
+        image: ghcr.io/rhobs/prometheus-example-app:0.4.0
+        ports:
+        - name: web
+          containerPort: 8080
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: consul-example-app
+  namespace: default
+  labels:
+    app.kubernetes.io/name: consul-example-app
+spec:
+  selector:
+    app.kubernetes.io/name: consul-example-app
+  ports:
+  - name: web
+    port: 8080
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: consul-example-app-config
+  namespace: default
+data:
+  consul-example-app.json: |
+    {
+      "service": {
+        "name": "consul-example-app",
+        "tags": ["kubernetes", "example-app"],
+        "port": 8080,
+        "check": {
+          "http": "http://consul-example-app.default.svc.cluster.local:8080/health",
+          "interval": "30s",
+          "timeout": "30s"
+        }
+      }
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: consul
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: consul
+  template:
+    metadata:
+      labels:
+        app: consul
+    spec:
+      containers:
+        - name: consul
+          image: consul:1.15
+          ports:
+            - containerPort: 8500  # Consul HTTP API
+            - containerPort: 8600  # Consul DNS
+          args: ["agent", "-dev", "-client=0.0.0.0"]
+          env:
+          - name: CONSUL_LOCAL_CONFIG
+            valueFrom:
+              configMapKeyRef:
+                name: consul-example-app-config
+                key: consul-example-app.json
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: consul
+spec:
+  selector:
+    app: consul
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8500  # Consul HTTP API
+      targetPort: 8500
+    - protocol: TCP
+      name: dns
+      port: 8600  # Consul DNS
+      targetPort: 8600
+---

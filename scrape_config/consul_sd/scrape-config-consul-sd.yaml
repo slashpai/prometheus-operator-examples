@@ -1,0 +1,12 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: scrape-config-consul-sd-example
+  namespace: default
+  labels:
+    app.kubernetes.io/name: scrape-config-consul-sd-example
+spec:
+  consulSDConfigs:
+   - server: consul.default.svc.cluster.local:8500
+     services: ["consul-example-app"]
+ 
