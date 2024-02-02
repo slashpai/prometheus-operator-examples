@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  targets.yaml: |
+    - labels:
+        job: node-exporter-ext
+      targets:
+      - node.demo.do.prometheus.io
+    - labels:
+        job: prometheus-ext
+      targets:
+      - prometheus.demo.do.prometheus.io
+kind: ConfigMap
+metadata:
+  name: scrape-file-sd-external-targets
+  namespace: default

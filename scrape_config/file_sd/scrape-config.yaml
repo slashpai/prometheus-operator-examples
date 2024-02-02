@@ -4,9 +4,10 @@ metadata:
   name: scrape-config-file-sd-example
   namespace: default
   labels:
-    app.kubernetes.io/name: scrape-config-filesd-example
+    app.kubernetes.io/name: scrape-config-file-sd-example
 spec:
   fileSDConfigs:
     - files:
       - /etc/prometheus/configmaps/scrape-file-sd-targets/targets.yaml
+      - /etc/prometheus/configmaps/scrape-file-sd-external-targets/targets.yaml
       refreshInterval: 15s

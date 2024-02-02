@@ -2,15 +2,15 @@ apiVersion: v1
 data:
   targets.yaml: |
     - labels:
-        job: alertmanager
+        job: prometheus-operator
       targets:
-      - alertmanager-main.monitoring.svc.cluster.local:8080
+      - prometheus-operator.default.svc.cluster.local:8080
     - labels:
         job: prometheus
       targets:
-      - prometheus-k8s.monitoring.svc.cluster.local:9090
+      - prometheus-operated.default.svc.cluster.local:9090
 kind: ConfigMap
 metadata:
   creationTimestamp: null
   name: scrape-file-sd-targets
-  namespace: monitoring
+  namespace: default
