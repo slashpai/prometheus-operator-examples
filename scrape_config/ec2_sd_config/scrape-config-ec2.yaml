@@ -1,0 +1,22 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: scrape-config-ec2
+  namespace: default
+  labels:
+    app.kubernetes.io/name: scrape-config-ec2
+spec:
+  ec2SDConfigs:
+    - region: us-east-1
+      accessKey:
+        key: accessKey
+        name: aws-api-access
+      secretKey:
+        key: secretKey
+        name: aws-api-access
+      port: 9100
+      refreshInterval: 30s
+  relabelings:
+  - sourceLabels: [__meta_ec2_public_ip]
+    replacement: ${1}:9100
+    targetLabel: __address__
