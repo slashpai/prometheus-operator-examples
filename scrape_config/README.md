@@ -47,6 +47,26 @@ Look at each scrapeconfig file for various fields used.
     ![img](img/scrape_config_kube_sd_node.png)
     ![img](img/scrape_config_kube_sd_pod.png)
 
+## consulSDConfigs
+
+- Available from Prometheus-Operator version `0.68`. In example a consul instance is created and a app is registered with consul. Both app and consul is running inside kubernetes but it will work similar for external consul instance as well.
+
+```bash
+  kubectl apply -f ./consul_sd
+```
+
+- Port forward consul UI
+
+   ```bash
+   k port-forward svc/consul 8500
+   ```
+
+   ![img](img/consul_ui.png)
+
+- Refresh prometheus target page it should show scrape config targets
+
+   ![img](img/scrape_config_consul_sd.png)
+
 ## dnsSDConfigs
 
 - Available from Prometheus-Operator version `0.68`
