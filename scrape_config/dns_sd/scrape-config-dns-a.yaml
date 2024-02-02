@@ -1,0 +1,17 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: scrape-config-dns-sd-example
+  namespace: default
+  labels:
+    app.kubernetes.io/name: scrape-config-dns-sd-example
+spec:
+  dnsSDConfigs:
+    - names:
+      - demo.do.prometheus.io
+      type: A
+      port: 9090
+    - names:
+      - node.demo.do.prometheus.io
+      type: A
+      port: 9100
