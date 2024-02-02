@@ -1,5 +1,7 @@
 # Configure remote-write to thanos
 
+**TODO:** Update this guide since changed the pre-requiste from having kube-prometheus
+
 ## Steps
 
 1. Deploy thanos (You can use existing thanos setup if you have, update fields accordingly)
