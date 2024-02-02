@@ -1,0 +1,21 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: scrape-config-kubernetes-sd-example
+  namespace: default
+  labels:
+    app.kubernetes.io/name: scrape-config-kubernetes-sd-example
+spec:
+  scheme: HTTPS
+  authorization:
+    credentials:
+      name: prometheus-secret
+      key: token
+  tlsConfig:
+    ca:
+      secret:
+        name: default-server
+        key: ca.crt
+    insecureSkipVerify: true
+  kubernetesSDConfigs:
+  - role: Node

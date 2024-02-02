@@ -1,0 +1,14 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: ScrapeConfig
+metadata:
+  name: scrape-config-kubernetes-sd-example-pod
+  namespace: default
+  labels:
+    app.kubernetes.io/name: scrape-config-kubernetes-sd-example-pod
+spec:
+  scheme: HTTP
+  kubernetesSDConfigs:
+  - role: Pod
+    selectors:
+    - role: pod
+      label: app=sc.example
